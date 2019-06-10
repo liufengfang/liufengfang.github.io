@@ -59,7 +59,7 @@
 		<nav class="header-menu">
 			<ul>
 			
-				<li><a href="/">主页</a></li>
+				<li><a href="index.html">主页</a></li>
 	        
 				<li><a href="/tags/随笔/">随笔</a></li>
 	        
@@ -141,7 +141,7 @@
 				<ul style="width: 50%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
+					<li style="width: 50%"><a href="index.html">主页</a></li>
 		        
 					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
 		        
@@ -167,12 +167,12 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/02/hello-world/">我来啦</a>
+      <a class="article-title" href="2019/06/02/hello-world/">我来啦</a>
     </h1>
   
 
         
-        <a href="/2019/06/02/hello-world/" class="archive-article-date">
+        <a href="2019/06/02/hello-world/" class="archive-article-date">
   	<time datetime="2019-06-02T10:00:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-02</time>
 </a>
         
@@ -192,7 +192,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/06/02/hello-world/">展开全文 >></a>
+          <a class="article-more-a" href="2019/06/02/hello-world/">展开全文 >></a>
         </p>
       
 
@@ -222,19 +222,19 @@
 
 
   
-    <article id="post-把JVM、JMM、多线程串起来" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-jvm" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/02/把JVM、JMM、多线程串起来/">把JVM、JMM、多线程串起来</a>
+      <a class="article-title" href="2019/06/02/jvm/">把JVM、JMM、多线程串起来</a>
     </h1>
   
 
         
-        <a href="/2019/06/02/把JVM、JMM、多线程串起来/" class="archive-article-date">
+        <a href="2019/06/02/jvm/" class="archive-article-date">
   	<time datetime="2019-06-02T10:00:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-02</time>
 </a>
         
@@ -250,6 +250,8 @@
 </blockquote>
 <p>要理解上面的描述，就需要先理解java内存模型(Java Memory Model,JMM)。</p>
 <h3 id="JVM"><a href="#JVM" class="headerlink" title="JVM:"></a>JVM:</h3><p>java使用锁(无论是内置锁还是显示锁，在加锁和内存上都提供相同的语义)为源代码加上同步。使用javac编译成字节码指令，并保存到.class文件，适当的时候被JVM加载到他所管理的内存中。最后由JVM执行引擎编译成机器码(发生指令重排序)交给cpu来执行(发生代码乱序执行(Out-Of-Order Execution))。</p>
+<img src="/2019/06/02/jvm/jvm1.gif">
+
 <h3 id="JMM"><a href="#JMM" class="headerlink" title="JMM:"></a>JMM:</h3><p>它是一种规范。提供了缓存一致性抽象和读写访问过程抽象。<br>不同平台（cpu+操作系统）有不同的内存模型。JVM屏蔽这些差异，并实现JMM。让开发者只需要关注JMM即可。</p>
 <blockquote>
 <p>JVM[12.3.5]<br>java内存模型是围绕着在并发过程中如果处理原子性，可见性，和有序性这3个特征来建立的。<br>其中关于有序性，JMM为程序中所有的操作定义了一个偏序关系，称之为Happens-Before。</p>
@@ -267,7 +269,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/06/02/把JVM、JMM、多线程串起来/">展开全文 >></a>
+          <a class="article-more-a" href="2019/06/02/jvm/">展开全文 >></a>
         </p>
       
 

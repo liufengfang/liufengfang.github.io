@@ -12,14 +12,16 @@
 <meta name="keywords" content="多线程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="把JVM、JMM、多线程串起来">
-<meta property="og:url" content="http://192.168.1.5:4000/2019/06/02/把JVM、JMM、多线程串起来/index.html">
+<meta property="og:url" content="http://192.168.1.5:4000/2019/06/02/jvm/index.html">
 <meta property="og:site_name" content="liufengfang的博客">
 <meta property="og:description" content="1int i = 8;  这是一个简单的赋值语句。但在多线程的环境中，问题会变得复杂起来。  JCIP[16.1]如果缺少同步,那么会有很多因素使得线程无法立即甚至永远，看的另一个线程的操作结果。1.在编译器中生成的指令顺序，可以与源代码中的顺序不同,此外编译器还会把变量保存到寄存器而不是内存中；2.处理器可能采用乱序或并行等方式来执行指令；3.缓存可能会改变将写入变量提交到主内存的次序；4.而且">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-02T10:12:50.535Z">
+<meta property="og:image" content="http://192.168.1.5:4000/2019/06/02/jvm/jvm1.gif">
+<meta property="og:updated_time" content="2019-06-10T15:33:00.581Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="把JVM、JMM、多线程串起来">
 <meta name="twitter:description" content="1int i = 8;  这是一个简单的赋值语句。但在多线程的环境中，问题会变得复杂起来。  JCIP[16.1]如果缺少同步,那么会有很多因素使得线程无法立即甚至永远，看的另一个线程的操作结果。1.在编译器中生成的指令顺序，可以与源代码中的顺序不同,此外编译器还会把变量保存到寄存器而不是内存中；2.处理器可能采用乱序或并行等方式来执行指令；3.缓存可能会改变将写入变量提交到主内存的次序；4.而且">
+<meta name="twitter:image" content="http://192.168.1.5:4000/2019/06/02/jvm/jvm1.gif">
   
     <link rel="alternative" href="/atom.xml" title="liufengfang的博客" type="application/atom+xml">
   
@@ -60,9 +62,9 @@
 		<nav class="header-menu">
 			<ul>
 			
-				<li><a href="/">主页</a></li>
+				<li><a href="../../../../index.html">主页</a></li>
 	        
-				<li><a href="/tags/随笔/">随笔</a></li>
+				<li><a href="../../../../tags/随笔/">随笔</a></li>
 	        
 			</ul>
 		</nav>
@@ -142,9 +144,9 @@
 				<ul style="width: 50%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
+					<li style="width: 50%"><a href="../../../../index.html">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 50%"><a href="../../../../tags/随笔/">随笔</a></li>
 		        
 				</ul>
 			</nav>
@@ -159,7 +161,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-把JVM、JMM、多线程串起来" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-jvm" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -171,7 +173,7 @@
   
 
         
-        <a href="/2019/06/02/把JVM、JMM、多线程串起来/" class="archive-article-date">
+        <a href class="archive-article-date">
   	<time datetime="2019-06-02T10:00:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-02</time>
 </a>
         
@@ -187,6 +189,8 @@
 </blockquote>
 <p>要理解上面的描述，就需要先理解java内存模型(Java Memory Model,JMM)。</p>
 <h3 id="JVM"><a href="#JVM" class="headerlink" title="JVM:"></a>JVM:</h3><p>java使用锁(无论是内置锁还是显示锁，在加锁和内存上都提供相同的语义)为源代码加上同步。使用javac编译成字节码指令，并保存到.class文件，适当的时候被JVM加载到他所管理的内存中。最后由JVM执行引擎编译成机器码(发生指令重排序)交给cpu来执行(发生代码乱序执行(Out-Of-Order Execution))。</p>
+<img src="/2019/06/02/jvm/jvm1.gif">
+
 <h3 id="JMM"><a href="#JMM" class="headerlink" title="JMM:"></a>JMM:</h3><p>它是一种规范。提供了缓存一致性抽象和读写访问过程抽象。<br>不同平台（cpu+操作系统）有不同的内存模型。JVM屏蔽这些差异，并实现JMM。让开发者只需要关注JMM即可。</p>
 <blockquote>
 <p>JVM[12.3.5]<br>java内存模型是围绕着在并发过程中如果处理原子性，可见性，和有序性这3个特征来建立的。<br>其中关于有序性，JMM为程序中所有的操作定义了一个偏序关系，称之为Happens-Before。</p>
@@ -271,7 +275,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://192.168.1.5:4000/2019/06/02/把JVM、JMM、多线程串起来/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://192.168.1.5:4000/2019/06/02/jvm/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -285,7 +289,7 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/06/02/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="../hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
