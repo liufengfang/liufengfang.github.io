@@ -8,22 +8,22 @@
   <link rel="dns-prefetch" href="http://192.168.1.5:4000">
   <title>JMM概述 | liufengfang的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1int i = 8;  这是一个简单的赋值语句。但在多线程的环境中，问题会变得复杂起来。  JCIP[16.1]如果缺少同步,那么会有很多因素使得线程无法立即甚至永远，看的另一个线程的操作结果。1.在编译器中生成的指令顺序，可以与源代码中的顺序不同,此外编译器还会把变量保存到寄存器而不是内存中；2.处理器可能采用乱序或并行等方式来执行指令；3.缓存可能会改变将写入变量提交到主内存的次序；4.而且">
+  <meta name="description" content="本文参考部分:   JCIP-java并发编程实战(Java Concurrency in Practice，Brian Goetz等)， JVM-深入理解Java虚拟机：JVM高级特性与最佳实践 第2版(周志明)， []内是章节.   1int i = 8;  这是一个简单的赋值语句。但在多线程的环境中，问题会变得复杂起来。  JCIP[16.1]如果缺少同步,那么会有很多因素使得线程无法立即">
 <meta name="keywords" content="多线程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JMM概述">
 <meta property="og:url" content="http://192.168.1.5:4000/2019/06/02/jvm/index.html">
 <meta property="og:site_name" content="liufengfang的博客">
-<meta property="og:description" content="1int i = 8;  这是一个简单的赋值语句。但在多线程的环境中，问题会变得复杂起来。  JCIP[16.1]如果缺少同步,那么会有很多因素使得线程无法立即甚至永远，看的另一个线程的操作结果。1.在编译器中生成的指令顺序，可以与源代码中的顺序不同,此外编译器还会把变量保存到寄存器而不是内存中；2.处理器可能采用乱序或并行等方式来执行指令；3.缓存可能会改变将写入变量提交到主内存的次序；4.而且">
+<meta property="og:description" content="本文参考部分:   JCIP-java并发编程实战(Java Concurrency in Practice，Brian Goetz等)， JVM-深入理解Java虚拟机：JVM高级特性与最佳实践 第2版(周志明)， []内是章节.   1int i = 8;  这是一个简单的赋值语句。但在多线程的环境中，问题会变得复杂起来。  JCIP[16.1]如果缺少同步,那么会有很多因素使得线程无法立即">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://192.168.1.5:4000/2019/06/02/jvm/jvm1.gif">
 <meta property="og:image" content="http://192.168.1.5:4000/2019/06/02/jvm/memery.png">
 <meta property="og:image" content="http://192.168.1.5:4000/2019/06/02/jvm/JMM.png">
 <meta property="og:image" content="http://192.168.1.5:4000/2019/06/02/jvm/thread.png">
-<meta property="og:updated_time" content="2019-06-17T03:02:31.027Z">
+<meta property="og:updated_time" content="2019-06-17T07:12:49.567Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JMM概述">
-<meta name="twitter:description" content="1int i = 8;  这是一个简单的赋值语句。但在多线程的环境中，问题会变得复杂起来。  JCIP[16.1]如果缺少同步,那么会有很多因素使得线程无法立即甚至永远，看的另一个线程的操作结果。1.在编译器中生成的指令顺序，可以与源代码中的顺序不同,此外编译器还会把变量保存到寄存器而不是内存中；2.处理器可能采用乱序或并行等方式来执行指令；3.缓存可能会改变将写入变量提交到主内存的次序；4.而且">
+<meta name="twitter:description" content="本文参考部分:   JCIP-java并发编程实战(Java Concurrency in Practice，Brian Goetz等)， JVM-深入理解Java虚拟机：JVM高级特性与最佳实践 第2版(周志明)， []内是章节.   1int i = 8;  这是一个简单的赋值语句。但在多线程的环境中，问题会变得复杂起来。  JCIP[16.1]如果缺少同步,那么会有很多因素使得线程无法立即">
 <meta name="twitter:image" content="http://192.168.1.5:4000/2019/06/02/jvm/jvm1.gif">
   
     <link rel="alternative" href="/atom.xml" title="liufengfang的博客" type="application/atom+xml">
@@ -184,7 +184,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int i = 8;</span><br></pre></td></tr></table></figure>
+        <blockquote>
+<p>本文参考部分: </p>
+<ul>
+<li>JCIP-java并发编程实战(Java Concurrency in Practice，Brian Goetz等)，</li>
+<li>JVM-深入理解Java虚拟机：JVM高级特性与最佳实践 第2版(周志明)，</li>
+<li>[]内是章节.</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int i = 8;</span><br></pre></td></tr></table></figure>
 
 <p>这是一个简单的赋值语句。但在多线程的环境中，问题会变得复杂起来。</p>
 <blockquote>
